@@ -5,16 +5,10 @@ from database import session
 from models.models import Base, PointModel
 from models.factories import PointFactory
 
-from logging import getLogger
-
-
-logger = getLogger()
-
 
 @pytest.fixture
 def db_session():
     db_session = session
-    # import pdb; pdb.set_trace()
     Base.metadata.create_all(bind=db_session.bind)
     yield db_session
     Base.metadata.drop_all(bind=db_session.bind)
